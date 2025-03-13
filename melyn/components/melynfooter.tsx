@@ -1,117 +1,86 @@
-import { Codepen, Facebook, Github, Instagram, Linkedin, X } from 'lucide-react'
-const socialIcons = [
+'use client'
+import { AtSignIcon, EarthIcon, FacebookIcon, LinkedinIcon, TwitterIcon } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
-    { href: '', icon: <Github /> },
-  
-    { href: '', icon: <Linkedin /> },
-  
-    { href: '', icon: <Codepen /> },
-  
-    { href: '', icon: <X /> },
-  
-    { href: '', icon: <Instagram /> },
-  
-    { href: '', icon: <Facebook /> },
-  
-  ]
-  
-  
-  const footerSections = [
-  
+const socialLinks = [
     {
-  
-      title: 'John Doe',
-  
-      href: '#home',
-  
-      content: 'Crafting high-performance web applications.',
-  
+        name: 'LinkedIn',
+        link: '/',
+        icon: <LinkedinIcon />,
     },
-  
     {
-  
-      title: 'About',
-  
-      href: '#about',
-  
-      content: 'Get to know my journey and expertise.',
-  
+        name: 'X',
+        link: '/',
+        icon: <TwitterIcon />,
     },
-  
     {
-  
-      title: 'Projects',
-  
-      href: '#projects',
-  
-      content: 'Explore my most impactful work.',
-  
+        name: 'Facebook',
+        link: '/',
+        icon: <FacebookIcon />,
     },
-  
     {
-  
-      title: 'Skills',
-  
-      href: '#skills',
-  
-      content: 'Technologies and tools I excel at.',
-  
+        name: 'Website',
+        link: '/',
+        icon: <EarthIcon />,
     },
-  
-    {
-  
-      title: 'Services',
-  
-      href: '#services',
-  
-      content: 'What I can offer to bring value to your project.',
-  
-    },
-  
-  ]
+]
 
-export default function MelynFooter(){
+const description =
+    'We specialize in web development, SEO, and automation software solutions. Elevate your online presence and streamline your business with cutting-edge technology.'
+
+export default function MelynFooter() {
     return (
-        <footer className="bg-[#172b4d] px-4 py-6 text-white">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-5">
-            {footerSections.map((section, index) => (
-              <section
-                key={index}
-                className="rounded-lg p-4 transition-colors duration-300 hover:bg-gray-600"
-              >
-                <a href={section.href} className="block">
-                  <h2 className="text-lg font-semibold">{section.title}</h2>
-                  <p className="mt-2 text-sm text-gray-300">{section.content}</p>
-                </a>
-              </section>
-            ))}
-          </div>
-
-          <div className="border-t border-gray-700 pt-4">    
-            <div className="flex flex-col items-center justify-between md:flex-row">
-              <p className="mb-4 text-sm md:mb-0">© 2024 Abdul Basit | Coded with 💜</p>
-    
-              <ul className="flex space-x-4">
-                {socialIcons.map((item, index) => (
-                  <li
-                    key={index}
-                    className="h-8 w-8 rounded-full border border-gray-600 p-2 text-white transition-colors duration-300 hover:bg-gray-700"
-                  >
+        <footer className={`relative z-50 bg-white text-black`}>
+            <div className="flex flex-col items-center px-4 py-12">
+                {/* app logo */}
+                <div>
                     <a
-                      href={item.href}
-                      className="flex h-full w-full items-center justify-center"
+                        href="/"
+                        className="mb-8 flex items-center justify-center gap-5"
                     >
-                      {item.icon}
+                        <img
+                            src="/logo.png"
+                            className="h-8"
+                            alt="MelynWebworks Logo"
+                        />
+                        <span className="text-3xl font-semibold tracking-wider">
+                            MelynWebworks
+                        </span>
                     </a>
-    
-                  </li>
-                ))}
-    
-              </ul>
+                    <p className="max-w-[80vh] text-center text-lg font-medium">
+                        {description}
+                    </p>
+                </div>
+
+                {/* social links */}
+                <div className="mt-8">
+                    <span className="mb-6 block text-center text-lg font-medium text-[#767E94]">
+                        Follow Us
+                    </span>
+                    <ul className="flex items-center gap-6">
+                        {socialLinks.map(({ name, icon, link }) => (
+                            <li key={name}>
+                                <a
+                                    href={link}
+                                    title={name}
+                                    className="text-white hover:text-[#767e94]"
+                                    target="_blank"
+                                >
+                                    {icon}
+                                </a>
+                                <span className="sr-only">{name} account</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* email */}
+                <div className="mb-2 mt-6 flex items-center gap-2">
+                    <AtSignIcon size={16} />
+                    <span className="text-lg font-medium">melynworks@gmail.com</span>
+                </div>
+
             </div>
-          </div>
-        </div>
-      </footer>
-    );
+        </footer>
+    )
 }
